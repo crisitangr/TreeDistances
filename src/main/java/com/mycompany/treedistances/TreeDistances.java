@@ -4,7 +4,38 @@ import java.util.*;
 public class TreeDistances {
     
     static ArrayList<Integer>[] arbol;
-    
+    static int nodoMasLejano;
+    static int[] busqueda (int inicio, int n){
+        boolean[] visitado = new boolean[n+1];
+        int[] distancia = new int[n+1];
+        Queue<Integer> cola = new LinkedList<>();
+        cola.add(inicio);
+        visitado[inicio] = true;
+          nodoMasLejano = inicio;
+
+        while (!cola.isEmpty()) {
+
+            int nodo = cola.poll();
+
+            for (int siguiente : arbol[nodo]) {
+
+                if (!visitado[siguiente]) {
+
+                    visitado[siguiente] = true;
+
+                    distancia[siguiente] = distancia[nodo] + 1;
+
+                    cola.add(siguiente);
+
+                    if (distancia[siguiente] > distancia[nodoMasLejano]) {
+                        nodoMasLejano = siguiente;
+                    }
+                }
+            }
+        }
+
+        return distancia;
+    }
     public static void main(String[] args) {
         
         Scanner sc = new Scanner(System.in);
@@ -22,6 +53,8 @@ public class TreeDistances {
             arbol[a].add(b);
             arbol[b].add(a);
         }
+       busqueda(1, n);
        
+        System.out.println(nodoMasLejano);
     }
 }
