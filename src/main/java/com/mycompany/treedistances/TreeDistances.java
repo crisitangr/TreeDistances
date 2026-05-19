@@ -55,6 +55,14 @@ public class TreeDistances {
         }
        busqueda(1, n);
        
-        System.out.println(nodoMasLejano);
+       int extremoA = nodoMasLejano;
+       int[] distanciaA = busqueda(extremoA, n);
+
+       int extremoB = nodoMasLejano;
+
+       int[] distanciaB = busqueda(extremoB, n);
+
+       System.out.println(extremoA);
+       System.out.println(extremoB);
     }
 }
