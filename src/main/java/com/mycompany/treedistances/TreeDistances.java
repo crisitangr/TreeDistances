@@ -6,11 +6,17 @@ public class TreeDistances {
     static ArrayList<Integer>[] arbol;
     static int nodoMasLejano;
     static int[] busqueda (int inicio, int n){
+        
         boolean[] visitado = new boolean[n+1];
+        
         int[] distancia = new int[n+1];
+        
         Queue<Integer> cola = new LinkedList<>();
+        
         cola.add(inicio);
+        
         visitado[inicio] = true;
+        
           nodoMasLejano = inicio;
 
         while (!cola.isEmpty()) {
@@ -56,13 +62,22 @@ public class TreeDistances {
        busqueda(1, n);
        
        int extremoA = nodoMasLejano;
-       int[] distanciaA = busqueda(extremoA, n);
 
-       int extremoB = nodoMasLejano;
+        int[] distanciaA = busqueda(extremoA, n);
 
-       int[] distanciaB = busqueda(extremoB, n);
+        int extremoB = nodoMasLejano;
 
-       System.out.println(extremoA);
-       System.out.println(extremoB);
+        int[] distanciaB = busqueda(extremoB, n);
+
+        StringBuilder respuesta = new StringBuilder();
+
+        for (int i = 1; i <= n; i++) {
+
+            int maxima = Math.max(distanciaA[i], distanciaB[i]);
+
+            respuesta.append(maxima).append(" ");
+        }
+
+        System.out.println(respuesta);
     }
 }
