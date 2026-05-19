@@ -1,5 +1,5 @@
 package com.mycompany.treedistances;
-
+import java.io.*;
 import java.util.*;
 public class Main {
     
@@ -42,10 +42,10 @@ public class Main {
 
         return distancia;
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       int n = Integer.parseInt(br.readLine());
         arbol = new ArrayList[n + 1];
         
         for (int i = 1; i<=n; i++){
@@ -53,8 +53,9 @@ public class Main {
         }
         
         for (int i = 0; i < n - 1; i++) {
-            int a = sc.nextInt();
-            int b = sc.nextInt();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
             
             arbol[a].add(b);
             arbol[b].add(a);
